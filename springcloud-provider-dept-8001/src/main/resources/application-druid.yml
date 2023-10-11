@@ -1,0 +1,43 @@
+server:
+  port: 8001
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.zou.pojo.*
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #Spring Boot默认是不注入这些属性值的，需要自己绑定
+    #druid专用配置
+    #(这里并不会被注入的springAutoConfiguration中，因为他们并没有这个属性，但是会保存到这个对象中，来注入到druid中)
+    druid:
+      username: root
+      password: 123456@Root
+      url: jdbc:mysql://82.156.155.250:3306/db01_springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #     配置初始化大小、最小、最大线程数
+      initialSize: 5
+      minIdle: 5
+      #     CPU核数+1，也可以大些但不要超过20，数据库加锁时连接过多性能下降
+      maxActive: 20
+      #     最大等待时间，内网：800，外网：1200（三次握手1s）
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      #     配置一个连接在池中最大空间时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      #     设置从连接池获取连接时是否检查连接有效性，true检查，false不检查
+      testOnBorrow: true
+      #     设置从连接池归还连接时是否检查连接有效性，true检查，false不检查
+      testOnReturn: true
+      #     可以支持PSCache（提升写入、查询效率）
+      poolPreparedStatements: true
+      #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙, 这里省略掉了log4j因为没有配置
+      filters: stat,wall,log4j
+      #     保持长连接
+      keepAlive: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
