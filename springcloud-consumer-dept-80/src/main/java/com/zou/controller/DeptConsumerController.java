@@ -8,6 +8,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -18,25 +19,10 @@ public class DeptConsumerController {
 
     @Autowired
     @Qualifier("restTemplate")
-    RestTemplate restTemplate;
+    RestOperations restTemplate;
 
-    @Autowired
-    DiscoveryClient discoveryClient;
 
     public static final String REST_URL_STR = "http://PROVIDER-DEPT";
-
-    @RequestMapping("/getall")
-    public Object test(){
-        List<List<ServiceInstance>> servicesList = new ArrayList<>();
-        //获取服务名称
-        List<String> serviceNames = discoveryClient.getServices();
-        for (String serviceName : serviceNames) {
-            //获取服务中的实例列表
-            List<ServiceInstance> serviceInstances = discoveryClient.getInstances(serviceName);
-            servicesList.add(serviceInstances);
-        }
-        return servicesList;
-    }
 
     @ResponseBody
     @RequestMapping("/consumer/dept/getall")

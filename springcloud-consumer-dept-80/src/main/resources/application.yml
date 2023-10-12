@@ -1,11 +1,11 @@
 server:
-  port: 80
+  port: 801
 
 
 #向eureka中心注册
 eureka:
   client:
-    service-url:
-      defaultZone: http://127.0.0.1:7001/eureka
-    fetch-registry: true
-    register-with-eureka: false
+    service-url: # 注册服务地址
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka
+#    fetch-registry: true # 如果配置在客户端client代表是否检索服务
+#    register-with-eureka: false # 服务消费者无需向注册中心注册自己

@@ -8,4 +8,4 @@ spring:
 eureka:
   client:
     service-url: # 注册服务地址
-      defaultZone: http://127.0.0.1:7001/eureka
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka

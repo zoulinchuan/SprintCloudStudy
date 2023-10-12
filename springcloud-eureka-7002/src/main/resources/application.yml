@@ -3,10 +3,8 @@ server:
 
 #Eureka配置
 eureka:
-  instance:
-    hostname: 127.0.0.1
   client:
-    register-with-eureka: false # 是否向Eureka注册中心注册自己
-    fetch-registry: false # 是否拉取其它服务的信息，默认是true
     service-url: # 配置eureka集群的其他成员
-      defaultZone: http://127.0.0.1:7002/eureka
+      defaultZone: http://127.0.0.1:7001/eureka
+    fetch-registry: false # 不检索服务
+    register-with-eureka: false # 自己本身就为服务注册中心就不需要注册自己
