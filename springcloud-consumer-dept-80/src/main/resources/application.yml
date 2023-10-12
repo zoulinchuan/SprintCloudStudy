@@ -1,2 +1,11 @@
 server:
-  port: 801
+  port: 80
+
+
+#向eureka中心注册
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+    fetch-registry: true
+    register-with-eureka: false
