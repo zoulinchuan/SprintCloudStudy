@@ -27,6 +27,14 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+        <!--在spring-cloud-starter-netflix-eureka-client已经集成了ribbon就不需要写了
+            如果仍然要就会包之间就会发生冲突从而引发： 找不到服务异常
+        -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>-->
+<!--            <version>2.2.10.RELEASE</version>-->
+<!--        </dependency>-->
 
 
 
